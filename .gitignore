@@ -1,4 +1,10 @@
 *.swp
+
+# Nix
+.direnv/
+result
+result-*
+
 autom4te.cache
 Makefile
 Makefile.in
