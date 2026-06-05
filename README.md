@@ -87,6 +87,34 @@ Install
 $ sudo make install
 ```
 
+Nix
+===
+
+A `flake.nix` is provided for reproducible builds and development.
+
+Develop locally:
+```
+$ nix develop          # dev shell with toolchain, gdb, clang-tools
+$ nix build            # build the package
+```
+
+Use in your own flake by adding it as an input:
+```nix
+inputs.turbofec.url = "github:TheCodedKid/turbofec-nix";
+inputs.turbofec.inputs.nixpkgs.follows = "nixpkgs";
+```
+Then either reference the package directly:
+```nix
+buildInputs = [ turbofec.packages.${system}.default ];
+```
+or apply the overlay so `pkgs.turbofec` is available:
+```nix
+pkgs = import nixpkgs {
+  inherit system;
+  overlays = [ turbofec.overlays.default ];
+};
+```
+
 Benchmark
 =========
 
