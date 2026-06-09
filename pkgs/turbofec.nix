@@ -1,11 +1,15 @@
-{ lib, stdenv, autoreconfHook, pkg-config }:
+{
+  lib,
+  stdenv,
+  autoreconfHook,
+  pkg-config,
+}:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "turbofec";
   version = "0.1";
 
-  src = lib.cleanSource ./..;
-
+  src = lib.cleanSource ../.;
   nativeBuildInputs = [
     autoreconfHook
     pkg-config
